@@ -1,6 +1,6 @@
 import React from "react";
-
-export const MenuBar = () => {
+import "./SideBar.css";
+export const SideBar = () => {
   return (
     <div>
       <div className="MenuBar">

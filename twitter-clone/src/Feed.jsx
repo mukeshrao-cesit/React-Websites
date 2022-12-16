@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Tools from "./Tools";
-import "./style/MenuBar.css";
 import { useNavigate } from "react-router-dom";
 
 export const Feed = ({ feed }) => {

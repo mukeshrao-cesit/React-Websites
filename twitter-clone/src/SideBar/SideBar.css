@@ -26,7 +26,7 @@
 .MenuBar li {
   width: 100%;
 }
-.MenuBar li .icon:hover {
+.MenuBar li svg:hover {
   background-color: rgba(128, 128, 128, 0.131);
 }
 .Notification {
@@ -43,7 +43,7 @@
   border-radius: 30px;
   font-size: 12px;
 }
-.MenuBar li .icon {
+.MenuBar li svg {
   width: 28px;
   height: 28px;
   object-fit: contain;
