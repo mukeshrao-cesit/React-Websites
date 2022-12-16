@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 // const db = require("./mySql");
 //noSql connection
 const mongoose = require("mongoose");
-
+mongoose.set("strictQuery", true);
 const MongoModelTweet = require("./tweetsSchema");
 const MongoModelUser = require("./userSchema");
 
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 //tweet
-app.get("/api", async (req, res) => {
+app.get("/posts", async (req, res) => {
   //mongo connection
   const tweet_data = await MongoModelTweet.find({});
   res.send(tweet_data);
@@ -31,7 +31,7 @@ app.get("/user", async (req, res) => {
   res.send(user_data);
 });
 
-app.post("/api", async (req, res) => {
+app.post("/posts", async (req, res) => {
   const reqData = req.body;
   const post = new MongoModelTweet({
     ...reqData,
