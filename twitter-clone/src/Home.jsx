@@ -1,6 +1,6 @@
 import React from "react";
 import "./style/Home.css";
-import MidComp from "./MiddleComponent";
+import MidComp from "./MidComp/MiddleComponent";
 import { SideBar } from "./SideBar/SideBar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 

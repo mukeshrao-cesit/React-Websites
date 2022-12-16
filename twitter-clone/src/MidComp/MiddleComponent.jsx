@@ -1,9 +1,11 @@
-import Feeds from "./Feeds";
+import Feeds from "../Feeds";
+import { NavBar } from "./NavBar";
+import TweetPost from "./TweetPost";
 const MidComp = () => {
   return (
     <div className="Tweet-body" id="tweetMainContainer">
-      {/* <Navbar /> */}
-      {/* <MyTweet /> */}
+      <NavBar />
+      <TweetPost />
       <Feeds />
     </div>
   );
