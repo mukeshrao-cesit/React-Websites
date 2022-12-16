@@ -1,0 +1,104 @@
+.profileImg {
+  margin: 10px 35px 10px 20px;
+  display: flex;
+  gap: 20px;
+}
+.profileImgClick img {
+  cursor: pointer;
+}
+.myTweetContainer {
+  padding-top: 55px;
+}
+.profileImage {
+  width: 60px;
+  height: 60px;
+  margin-top: 15px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.tweetInput {
+  padding: 10px;
+}
+.myTweetSubmitBtn svg {
+  width: 25px;
+  height: 25px;
+  fill: rgb(29, 155, 240);
+}
+.myTweetSubmitBtn {
+  width: 100%;
+  display: flex;
+  margin-top: 5px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.importImg {
+  position: relative;
+}
+.importImg input {
+  position: absolute;
+  z-index: 1;
+}
+#previewInput::before {
+  content: "";
+}
+#previewInput {
+  background-color: rgba(0, 255, 255, 0);
+  width: 25px;
+}
+#previewInput::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.myTweetsvg svg {
+  padding-right: 10px;
+  position: relative;
+}
+.myTweetsvg {
+  display: flex;
+}
+.myTweetSubmitBtn Button {
+  background-color: rgb(29, 155, 240);
+  border: none;
+  padding: 10px 15px;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px 20px 20px 20px;
+}
+.tweetInput textarea {
+  width: 450px;
+  min-height: 65px;
+  max-height: 210px;
+  font-size: 20px;
+  resize: none;
+  border: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", sans-serif;
+}
+.tweetInput textarea:focus {
+  outline: none;
+}
+.previewImageContainer {
+  position: relative;
+  display: flex;
+}
+
+.previewImageContainer svg {
+  background-color: rgba(0, 0, 0, 0.601);
+  border-radius: 50%;
+  fill: white;
+  width: 20px;
+  height: 20px;
+  padding: 7px;
+  position: absolute;
+  top: 20px;
+  left: 5px;
+}
+.previewImageContainer img {
+  display: none;
+  margin: 15px 0px;
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+}
+#cancelPreviewImage {
+  display: none;
+}

@@ -1,0 +1,39 @@
+.commentSectionProfile img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.commentSectionContainer {
+  display: flex;
+  border-top: 1px solid rgba(128, 128, 128, 0.192);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.192);
+  padding: 20px 0px;
+  margin-bottom: 10px;
+}
+.commentSectionTextArea {
+  width: 100%;
+  padding: 0px 20px;
+}
+.commentSectionTextArea textarea {
+  width: 100%;
+  resize: none;
+  font-size: 20px;
+  border: none;
+  padding: 5px 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", sans-serif;
+}
+.commentSectionTextArea textarea:focus {
+  outline: none;
+}
+.commentSectionTextArea button {
+  float: right;
+  background-color: rgb(29, 155, 240);
+  border: none;
+  padding: 10px 15px;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 20px 20px 20px 20px;
+}
