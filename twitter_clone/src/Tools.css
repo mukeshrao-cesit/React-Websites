@@ -1,0 +1,34 @@
+.openFeedTools {
+  width: 90%;
+  display: flex;
+  margin: 10px 0px;
+  align-items: center;
+  justify-content: space-between;
+}
+.openFeedTools .comment {
+  display: flex;
+  align-items: center;
+  fill: grey;
+}
+.openFeedTools .reTweet {
+  display: flex;
+  align-items: center;
+  fill: grey;
+}
+.openFeedTools .likes {
+  display: flex;
+  align-items: center;
+}
+
+.openFeedTools .share {
+  align-items: baseline;
+  fill: grey;
+}
+.openFeedTools svg {
+  width: 20px;
+  height: 20px;
+}
+.openFeedTools p {
+  margin: 0;
+  padding: 0px 7px;
+}

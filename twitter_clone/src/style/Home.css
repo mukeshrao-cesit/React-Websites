@@ -1,0 +1,145 @@
+.Row {
+  display: grid;
+  grid-template-columns: 150px 620px auto;
+}
+.col-2 {
+  border-right: 1px solid rgba(128, 128, 128, 0.192);
+}
+.HomePage {
+  position: relative;
+}
+@media screen and (max-width: 576px) {
+  .col-1 {
+    display: block;
+  }
+  .commentContainer {
+    margin-top: 15px;
+  }
+  .commentContainer textarea {
+    padding: 10px 0px;
+  }
+  .Row {
+    display: block;
+  }
+  .col-3 {
+    display: none;
+  }
+  .Tweet-body {
+    position: relative;
+  }
+  .MenuBar {
+    width: 100%;
+    z-index: 1;
+    bottom: 0;
+  }
+  .feather {
+    position: absolute;
+    right: 15px;
+    bottom: 70px;
+  }
+  .panel {
+    background-color: white;
+  }
+  .MenuBar ul {
+    padding-left: 0px;
+    display: flex;
+  }
+
+  .MenuBar li {
+    margin: 0;
+  }
+  .Navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+  }
+  .Navbar h3 {
+    margin: 0;
+    margin-left: 20px;
+  }
+  .Navbar svg {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    border-radius: 50%;
+  }
+  .myTweetContainer {
+    display: none;
+  }
+  .Tweets {
+    padding-top: 50px;
+    margin-bottom: 55px;
+  }
+  .feedProfileImg {
+    width: 50px;
+    height: 50px;
+  }
+  .feedList {
+    display: none;
+  }
+  .phoneView {
+    display: block;
+  }
+  .feedProfileDetails {
+    display: block;
+  }
+  .feedProfileDetails p {
+    margin: 0;
+  }
+  .popup-inner {
+    height: 100vh;
+    margin-top: 40px;
+    border-radius: 0;
+    padding: 26px;
+  }
+  .commentPhonePopUp {
+    display: block;
+  }
+  .commentPopUpContainer {
+    display: none;
+  }
+  .menuBar {
+    display: block;
+  }
+  .panel li {
+    width: 60px;
+  }
+  .panel {
+    border-top: 1px solid rgba(128, 128, 128, 0.151);
+    justify-content: space-around;
+    background-color: rgb(255, 255, 255);
+  }
+  .MenuBar ul {
+    display: none;
+  }
+  .feather .icon {
+    width: 30px;
+    padding: 15px;
+  }
+  .phoneOpenFeed {
+    margin-bottom: 40px;
+  }
+  #previewImg {
+    width: 95%;
+  }
+  .tweetInput textarea {
+    width: 100%;
+  }
+  .openFeedTools p {
+    padding: 0;
+  }
+  .commentPhoneView {
+    margin-left: 45px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .col-3 {
+    display: none;
+  }
+}

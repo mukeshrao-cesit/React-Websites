@@ -1,0 +1,22 @@
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 1px;
+  position: fixed;
+  width: 618px;
+  background-color: white;
+}
+.Navbar h3 {
+  margin: 0;
+  margin-left: 20px;
+}
+.Navbar svg {
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  border-radius: 50%;
+}
+.Navbar svg:hover {
+  background-color: rgba(128, 128, 128, 0.131);
+}

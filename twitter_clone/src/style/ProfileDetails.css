@@ -1,0 +1,113 @@
+.ProfileDetails {
+  margin-left: 20px;
+}
+.ProfileName {
+  margin-top: 70px;
+}
+.ProfileName h4 {
+  margin: 0;
+  font-size: 22px;
+}
+.ProfileName p {
+  margin: 0;
+  color: grey;
+}
+.ProfileBorn_Joined {
+  display: flex;
+  margin: 15px 0px 10px 0px;
+}
+.Location {
+  display: flex;
+}
+.Location svg {
+  width: 20px;
+  height: 20px;
+  fill: rgb(97, 97, 97);
+}
+.Location p {
+  margin: 0;
+  color: rgb(97, 97, 97);
+  margin-left: 4px;
+  font-size: 15px;
+}
+.BornDetails {
+  display: flex;
+  margin-left: 10px;
+}
+.BornDetails svg {
+  width: 20px;
+  height: 20px;
+  fill: rgb(97, 97, 97);
+}
+.BornDetails p {
+  margin: 0;
+  color: rgb(97, 97, 97);
+  margin-left: 4px;
+  font-size: 15px;
+}
+.JoinedDetails {
+  display: flex;
+  margin-left: 10px;
+}
+.JoinedDetails svg {
+  width: 20px;
+  height: 20px;
+  fill: rgb(97, 97, 97);
+}
+.JoinedDetails p {
+  margin: 0;
+  color: rgb(97, 97, 97);
+  margin-left: 4px;
+  font-size: 15px;
+}
+.Follow_Followers {
+  display: flex;
+  margin-top: 15px;
+}
+.FollowingDetails {
+  display: flex;
+}
+.FollowingDetails p {
+  margin: 0;
+  margin-left: 5px;
+  color: rgb(97, 97, 97);
+  font-size: 15px;
+}
+.FollowersDetails {
+  display: flex;
+  margin-left: 10px;
+}
+.FollowersDetails p {
+  margin: 0;
+  margin-left: 5px;
+  color: rgb(97, 97, 97);
+  font-size: 15px;
+}
+.FF {
+  margin-left: 0 !important;
+  font-weight: 700;
+  color: black !important;
+}
+.Overview {
+  display: flex;
+  margin-top: 15px;
+  justify-content: space-around;
+}
+
+.OverviewPanel {
+  padding: 20px 20px 0px 20px;
+}
+.OverviewPanel p {
+  margin: 0;
+  font-weight: 600;
+}
+.OverviewHover {
+  margin-top: 15px !important;
+  background-color: rgb(29, 155, 240);
+  padding: 2px;
+  border-radius: 10px;
+  display: none;
+}
+#tweetsOverview {
+  display: block;
+}
