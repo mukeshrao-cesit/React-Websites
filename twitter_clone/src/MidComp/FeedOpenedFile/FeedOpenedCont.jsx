@@ -1,24 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./FeedOpenedCont.css";
-import axios from "axios";
-// import CommentDisplay from "./CommentDisplay";
+import CommentDisplay from "./CommentSection/CommentDisplay";
 import CommentSection from "./CommentSection/CommentSection";
 import Tools from "../../Tools";
-import { useDispatch } from "react-redux";
-export const FeedOpenedCont = ({ profileDetails }) => {
-  const [postContent, setPostContent] = useState(profileDetails);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    axios.patch("http://localhost:5000/comment").then((req, res) => {
-      console.log("activated");
-      dispatch({ type: "ADDEDCOMMENT", newComment: res });
-    });
-  }, [postContent, dispatch]);
-  function handleNewComment(data) {
-    // setPostContent((prev) => {
-    //   return { ...prev, comments: [data, ...prev.comments] };
-    // });
-  }
+export const FeedOpenedCont = ({ postDetails }) => {
+  const [postContent, setPostContent] = useState(postDetails);
   return (
     <div className="phoneOpenFeed">
       <div className="OpenFeed">
@@ -57,10 +43,15 @@ export const FeedOpenedCont = ({ profileDetails }) => {
           <Tools content={postContent} />
         </div>
         <div>
-          <CommentSection handleNewComment={handleNewComment} />
+          <CommentSection
+            postContent={postContent}
+            setPostContent={setPostContent}
+          />
         </div>
       </div>
-      <div>{/* <CommentDisplay postContent={postContent} /> */}</div>
+      <div>
+        <CommentDisplay postContent={postContent} />
+      </div>
     </div>
   );
 };

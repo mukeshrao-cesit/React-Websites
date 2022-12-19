@@ -7,7 +7,7 @@ export const FeedOpenedComp = () => {
   return (
     <div>
       <FeedOpenedNav />
-      <FeedOpenedCont profileDetails={location.state.profileDetails} />
+      <FeedOpenedCont postDetails={location.state.postDetails} />
     </div>
   );
 };
