@@ -14,6 +14,7 @@ function tweetsUpdate(state = initialState, action) {
       return { ...state, userDetails: action.newTweets };
     }
     case "UPDATE": {
+      console.log(action.newTweets);
       return { ...state, tweets: [action.newTweets, ...state.tweets] };
     }
     case "USERTWEET": {

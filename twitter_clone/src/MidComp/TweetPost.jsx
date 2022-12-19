@@ -1,27 +1,38 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./TweetPost.css";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 const TweetPost = () => {
   const userDetails = useSelector((state) => state.userDetails);
   const [tweetPostInput, setTweetPostInput] = useState("");
-  const [currentTweet, setCurrentTweet] = useState({
-    profileName: userDetails.profileName,
-    profileId: userDetails.profileId,
-    profileImg: userDetails.profileImg,
-    id: uuidv4(),
-    description: tweetPostInput,
-    documents: "",
-    comments: [],
-    likesCount: 0,
-    commentsCount: 0,
-    retweetCount: 0,
-    isAlreadyLiked: false,
-  });
-  function tweetPostSubmit() {
-    console.log(currentTweet);
+  const dispatch = useDispatch();
+
+  async function tweetPostSubmit(e) {
+    e.preventDefault();
+    const payload = {
+      profileId: userDetails.profileId,
+      profileName: userDetails.profileName,
+      profileImg: userDetails.profileImg,
+      description: tweetPostInput,
+      id: uuidv4(),
+      documents: "",
+      comments: [],
+      likesCount: 0,
+      commentsCount: 0,
+      retweetCount: 0,
+      isAlreadyLiked: false,
+    };
+    setTweetPostInput("");
+    try {
+      const res = await axios.post("http://localhost:5000/posts", payload);
+      dispatch({ type: "UPDATE", newTweets: res.data });
+    } catch (error) {
+      console.log(error);
+    }
   }
+
   function textGrow(event) {
     event.target.style.height = "3px";
     event.target.style.height = event.target.scrollHeight + "px";
@@ -37,6 +48,7 @@ const TweetPost = () => {
           <form onSubmit={tweetPostSubmit}>
             <textarea
               onInput={textGrow}
+              value={tweetPostInput}
               onChange={(e) => setTweetPostInput(e.target.value)}
               type="text"
               className="input-bar"

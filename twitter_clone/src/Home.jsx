@@ -3,6 +3,7 @@ import "./style/Home.css";
 import MidComp from "./MidComp/MiddleComponent";
 import { SideBar } from "./SideBar/SideBar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { FeedOpenedComp } from "./MidComp/FeedOpenedFile/FeedOpenedComp";
 
 export const Home = () => {
   return (
@@ -15,7 +16,7 @@ export const Home = () => {
           <BrowserRouter>
             <Routes>
               <Route path="/Feeds" element={<MidComp />} />
-              {/* <Route path="/openedTweet" element={<Threads />} /> */}
+              <Route path="/openedTweet" element={<FeedOpenedComp />} />
               <Route path="/" element={<Navigate to="/Feeds" />} />
               {/* <Route path="/Profile" element={<Profile />} /> */}
             </Routes>

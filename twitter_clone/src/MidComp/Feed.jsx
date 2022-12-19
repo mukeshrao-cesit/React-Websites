@@ -11,7 +11,7 @@ export const Feed = ({ feed }) => {
 
   function handleClick() {
     if (!isLikeClicked && !feedCommentClicked) {
-      navigate("/openedTweet", { state: { feedId: feed } });
+      navigate("/openedTweet", { state: { profileDetails: feed } });
     }
     // isLikeClicked = false;
     // feedCommentClicked = false;
