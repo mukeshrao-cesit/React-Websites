@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import "./Tools.css";
 
-export default function Tools({ content, refreshFunc }) {
+export default function Tools({
+  content,
+  refreshFunc,
+  setCommentPopUp,
+  commentPopUp,
+}) {
   const [isAlreadyLiked, setisAlreadyLiked] = useState(content.isAlreadyLiked);
   const [likeColor, setLikeColor] = useState("grey");
   const [likePath, setLikePath] = useState(
@@ -45,7 +50,10 @@ export default function Tools({ content, refreshFunc }) {
   return (
     <div>
       <div className="openFeedTools">
-        <div className="comment">
+        <div
+          className="comment"
+          onClick={(e) => setCommentPopUp(!commentPopUp)}
+        >
           <svg
             viewBox="0 0 24 24"
             aria-hidden="true"

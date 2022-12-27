@@ -14,8 +14,22 @@ function tweetsUpdate(state = initialState, action) {
       return { ...state, userDetails: action.newTweets };
     }
     case "UPDATE": {
-      console.log(action.newTweets);
       return { ...state, tweets: [action.newTweets, ...state.tweets] };
+    }
+    case "UPDATETWEET": {
+      return {
+        ...state,
+        tweets: state.tweets.map((item) => {
+          if (action._id === item._id) {
+            return {
+              ...action.newComment,
+              commentsCount: action.newComment.commentsCount++,
+            };
+          } else {
+            return { ...item };
+          }
+        }),
+      };
     }
     case "USERTWEET": {
       return {

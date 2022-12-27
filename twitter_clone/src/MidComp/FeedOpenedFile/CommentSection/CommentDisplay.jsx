@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import CommentList from "./CommentList";
 
 export default function CommentDisplay({ postContent }) {
+  const [postComments, setPostComments] = useState(postContent);
+  function handleSubb(res) {
+    console.log(postComments);
+  }
   return (
     <div>
-      {postContent.comments.map((data) => (
-        <CommentList event={data} key={data.id} />
+      {postComments.comments.map((data) => (
+        <CommentList
+          postComments={data}
+          handleSubb={handleSubb}
+          key={data.id}
+        />
       ))}
     </div>
   );

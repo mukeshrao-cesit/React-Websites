@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "./CommentSection.css";
 import { v4 as uuidv4 } from "uuid";
-
-function CommentSection({ setPostContent }) {
+function CommentSection({ postContent, handleComment }) {
   const userDetails = useSelector((state) => state.userDetails);
   const [commentInput, setCommentInput] = useState("");
-  function handleNewComment(e) {
+  async function handleNewComment(e) {
     e.preventDefault();
     const payload = {
       profileId: userDetails.profileId,
@@ -14,16 +13,18 @@ function CommentSection({ setPostContent }) {
       profileImg: userDetails.profileImg,
       description: commentInput,
       id: uuidv4(),
+      isSubCommentPresent: false,
       documents: "",
-      comments: [],
+      subComments: [],
       likesCount: 0,
       commentsCount: 0,
       retweetCount: 0,
       isAlreadyLiked: false,
+      replyedTo: postContent.profileId,
     };
-    setPostContent((prev) => {
-      return { ...prev, comments: [payload, ...prev.comments] };
-    });
+
+    setCommentInput("");
+    handleComment(payload, postContent._id);
   }
   function textGrow(event) {
     event.target.style.height = "3px";
@@ -39,7 +40,7 @@ function CommentSection({ setPostContent }) {
           <form onSubmit={handleNewComment}>
             <textarea
               id="commentTextArea"
-              // value={}
+              value={commentInput}
               onInput={textGrow}
               onChange={(e) => setCommentInput(e.target.value)}
               placeholder="Tweet your reply"

@@ -1,5 +1,5 @@
 import Feeds from "./Feeds";
-import { NavBar } from "./NavBar";
+import { NavBar } from "./NavBar/NavBar";
 import TweetPost from "./TweetPost";
 const MidComp = () => {
   return (
