@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 //tweet
 app.get("/posts", async (req, res) => {
   //mongo connection
-  const tweet_data = await MongoModelTweet.find({});
+  const tweet_data = await MongoModelTweet.find();
   res.send(tweet_data);
 });
 
@@ -46,8 +46,21 @@ app.post("/posts", async (req, res) => {
 });
 
 app.patch("/comment", async (req, res) => {
-  const reqData = await req.body;
-  console.log(reqData);
+  const { _id, newComments } = await req.body;
+  const tweet = await MongoModelTweet.findOne({ _id });
+  const updatedTweet = {
+    ...tweet._doc,
+    comments: [newComments, ...tweet._doc.comments],
+    commentsCount: (tweet._doc.commentsCount += 1),
+  };
+  const comment = await MongoModelTweet.findByIdAndUpdate(_id, updatedTweet, {
+    new: true,
+  });
+  try {
+    res.send(comment);
+  } catch (error) {
+    console.log(error);
+  }
 });
 const db = mongoose.connection;
 db.once("open", function () {
