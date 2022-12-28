@@ -6,16 +6,16 @@ import CommentPopUp from "./CommentPopUp";
 export default function CommentList({ handleSubb, postComments }) {
   const [commentPopUp, setCommentPopUp] = useState(false);
   const [event, setEvent] = useState(postComments);
-  function handleSub() {
-    setEvent((prev) => {
-      return { ...prev, isSubCommentPresent: true };
-    });
-  }
+  // console.log("commentList", event);
+
   useEffect(() => {
     if (event.isSubCommentPresent) {
-      handleSubb();
+      setEvent((prev) => {
+        return { ...prev, isSubCommentPresent: false };
+      });
+      handleSubb(event);
     }
-  });
+  }, [event, handleSubb]);
   return (
     <div className="commentListContainer">
       <li>
@@ -50,13 +50,12 @@ export default function CommentList({ handleSubb, postComments }) {
         <CommentPopUp
           setEvent={setEvent}
           data={event}
-          handleSub={handleSub}
           setCommentPopUp={setCommentPopUp}
           commentPopUp={commentPopUp}
         />
       )}
       {event.subComments.length > 0 && (
-        <SubCommentsDisplay postContent={event} handleSub={handleSub} />
+        <SubCommentsDisplay postContent={event} setEvent={setEvent} />
       )}
     </div>
   );

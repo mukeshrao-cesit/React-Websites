@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "./CommentSection.css";
 import { v4 as uuidv4 } from "uuid";
-function CommentSection({ postContent, handleComment }) {
+import { useDispatch } from "react-redux";
+import axios from "axios";
+function CommentSection({ postContent, setPostContent, reRender }) {
   const userDetails = useSelector((state) => state.userDetails);
   const [commentInput, setCommentInput] = useState("");
+  const dispatch = useDispatch();
   async function handleNewComment(e) {
     e.preventDefault();
     const payload = {
@@ -24,7 +27,29 @@ function CommentSection({ postContent, handleComment }) {
     };
 
     setCommentInput("");
-    handleComment(payload, postContent._id);
+    setPostContent((prev) => {
+      return {
+        ...prev,
+        comments: [payload, ...prev.comments],
+        commentsCount: (prev.commentsCount += 1),
+        isSubCommentPresent: true,
+      };
+    });
+    try {
+      const res = await axios.patch("http://localhost:5000/comment", {
+        _id: postContent._id,
+        newComments: payload,
+      });
+      dispatch({
+        type: "UPDATETWEET",
+        newComment: res.data,
+        _id: postContent._id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    reRender();
+    // handleComment(payload, postContent._id);
   }
   function textGrow(event) {
     event.target.style.height = "3px";

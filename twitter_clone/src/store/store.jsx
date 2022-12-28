@@ -21,12 +21,9 @@ function tweetsUpdate(state = initialState, action) {
         ...state,
         tweets: state.tweets.map((item) => {
           if (action._id === item._id) {
-            return {
-              ...action.newComment,
-              commentsCount: action.newComment.commentsCount++,
-            };
+            return action.newComment;
           } else {
-            return { ...item };
+            return item;
           }
         }),
       };

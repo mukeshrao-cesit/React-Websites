@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "./CommentPopUp.css";
 import { v4 as uuidv4 } from "uuid";
@@ -7,7 +7,6 @@ export default function CommentPopUp({
   setCommentPopUp,
   data,
   setEvent,
-  handleSub,
 }) {
   const [commentInput, setCommentInput] = useState("");
   const userDetails = useSelector((state) => state.userDetails);
@@ -42,12 +41,6 @@ export default function CommentPopUp({
     setCommentInput("");
     setCommentPopUp(!commentPopUp);
   }
-  useEffect(() => {
-    console.log("data", data);
-    if (data.isSubCommentPresent) {
-      handleSub("called");
-    }
-  });
   return (
     <div className="popup">
       <div className="popup-inner">

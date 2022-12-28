@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Tools from "../../../Tools";
 import { SubCommentsDisplay } from "./SubCommentsDisplay";
 import "./CommentList.css";
 import CommentPopUp from "./CommentPopUp";
-export default function SubCommentsList({ postContent, handleSub }) {
+export default function SubCommentsList({ postContent, handleEvent }) {
   const [commentPopUp, setCommentPopUp] = useState(false);
   const [event, setEvent] = useState(postContent);
+  useEffect(() => {
+    if (event.isSubCommentPresent) {
+      setEvent((prev) => {
+        return { ...prev, isSubCommentPresent: false };
+      });
+      handleEvent(event);
+    }
+  }, [event, handleEvent]);
+  // console.log("subCommentslist", postContent);
   return (
     <div className="commentListContainer">
       <li>
@@ -39,14 +48,13 @@ export default function SubCommentsList({ postContent, handleSub }) {
       {commentPopUp && (
         <CommentPopUp
           data={event}
-          handleSub={handleSub}
           setEvent={setEvent}
           setCommentPopUp={setCommentPopUp}
           commentPopUp={commentPopUp}
         />
       )}
       {event.subComments.length > 0 && (
-        <SubCommentsDisplay postContent={event} />
+        <SubCommentsDisplay postContent={event} setEvent={setEvent} />
       )}
     </div>
   );

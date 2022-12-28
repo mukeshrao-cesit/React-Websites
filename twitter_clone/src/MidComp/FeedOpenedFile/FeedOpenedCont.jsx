@@ -3,33 +3,10 @@ import "./FeedOpenedCont.css";
 import CommentDisplay from "./CommentSection/CommentDisplay";
 import CommentSection from "./CommentSection/CommentSection";
 import Tools from "../../Tools";
-import axios from "axios";
-import { useDispatch } from "react-redux";
 
-export const FeedOpenedCont = ({ postDetails }) => {
+export const FeedOpenedCont = ({ postDetails, reRender }) => {
   const [postContent, setPostContent] = useState(postDetails);
-  const dispatch = useDispatch();
 
-  async function handleComment(payload, id) {
-    try {
-      const res = await axios.patch("http://localhost:5000/comment", {
-        _id: id,
-        newComments: payload,
-      });
-      dispatch({
-        type: "UPDATETWEET",
-        newComment: res.data,
-        _id: postContent._id,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-    setPostContent({
-      ...postContent,
-      comments: [payload, ...postContent.comments],
-      commentsCount: (postContent.commentsCount += 1),
-    });
-  }
   return (
     <div className="phoneOpenFeed">
       <div className="OpenFeed">
@@ -69,13 +46,18 @@ export const FeedOpenedCont = ({ postDetails }) => {
         </div>
         <div>
           <CommentSection
-            handleComment={handleComment}
+            reRender={reRender}
             postContent={postContent}
+            setPostContent={setPostContent}
           />
         </div>
       </div>
       <div>
-        <CommentDisplay postContent={postContent} />
+        <CommentDisplay
+          reRender={reRender}
+          postContent={postContent}
+          setPostContent={setPostContent}
+        />
       </div>
     </div>
   );
