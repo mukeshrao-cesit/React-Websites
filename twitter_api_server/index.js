@@ -45,6 +45,33 @@ app.post("/posts", async (req, res) => {
   }
 });
 
+app.patch("/subcomment", async (req, res) => {
+  const { _id, newSubComments, commentID } = await req.body;
+  const tweet = await MongoModelTweet.findOne({ _id });
+  const updatedTweet = {
+    ...tweet._doc,
+    comments: tweet._doc.comments.map((elem) => {
+      if (elem.id === commentID) {
+        return {
+          ...newSubComments,
+          commentsCount: newSubComments.commentsCount + 1,
+          isSubCommentPresent: !newSubComments.isSubCommentPresent,
+        };
+      } else {
+        return elem;
+      }
+    }),
+  };
+  const comment = await MongoModelTweet.findByIdAndUpdate(_id, updatedTweet, {
+    new: true,
+  });
+  try {
+    res.send(comment);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 app.patch("/comment", async (req, res) => {
   const { _id, newComments } = await req.body;
   const tweet = await MongoModelTweet.findOne({ _id });
