@@ -49,7 +49,6 @@ function CommentSection({ postContent, setPostContent, reRender }) {
       console.log(error);
     }
     reRender();
-    // handleComment(payload, postContent._id);
   }
   function textGrow(event) {
     event.target.style.height = "3px";

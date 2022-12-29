@@ -23,11 +23,14 @@ export const FeedOpenedComp = () => {
   function reRender() {
     apiCall();
   }
-  console.log("re-rendered", postDetails);
   return (
     <div>
       <FeedOpenedNav />
-      <FeedOpenedCont postDetails={postDetails} reRender={reRender} />
+      <FeedOpenedCont
+        postDetails={postDetails}
+        setPostDetails={setPostDetails}
+        reRender={reRender}
+      />
     </div>
   );
 };

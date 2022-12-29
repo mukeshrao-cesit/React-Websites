@@ -6,7 +6,6 @@ import CommentPopUp from "./CommentPopUp";
 export default function CommentList({ handleSubb, postComments }) {
   const [commentPopUp, setCommentPopUp] = useState(false);
   const [event, setEvent] = useState(postComments);
-  // console.log("commentList", event);
 
   useEffect(() => {
     if (event.isSubCommentPresent) {

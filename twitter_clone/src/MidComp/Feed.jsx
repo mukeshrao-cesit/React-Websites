@@ -7,20 +7,36 @@ export const Feed = ({ feed }) => {
   const navigate = useNavigate();
   var isLikeClicked = false;
   var feedCommentClicked = false;
-  //   const [isFeedCommentClicked, setisFeedCommentClicked] = useState(false);
+  var profileClicked = false;
+
+  function handleLikeClick() {
+    isLikeClicked = true;
+  }
 
   function handleClick() {
-    if (!isLikeClicked && !feedCommentClicked) {
+    if (!isLikeClicked && !feedCommentClicked && !profileClicked) {
       navigate("/openedTweet", { state: { postDetails: feed } });
+    } else if (profileClicked) {
+      navigate("/Profile", { state: { postDetails: feed } });
     }
-    // isLikeClicked = false;
-    // feedCommentClicked = false;
+    isLikeClicked = false;
+    feedCommentClicked = false;
+    profileClicked = false;
+  }
+
+  function handleProfileComp() {
+    profileClicked = true;
   }
 
   return (
     <div className="feed-list-wrapper">
       <li className="feedList" onClick={handleClick}>
-        <img className="feedProfileImg" src={feed.profileImg} alt="docu" />
+        <img
+          className="feedProfileImg"
+          src={feed.profileImg}
+          alt="docu"
+          onClick={handleProfileComp}
+        />
         <div className="feedContainer">
           <div className="feedProfileDetails">
             <h3>{feed.profileName}</h3>
@@ -28,7 +44,7 @@ export const Feed = ({ feed }) => {
           </div>
           <p>{feed.description}</p>
           {feed.documents.length > 0 && <img src={feed.documents} alt="doc" />}
-          <Tools content={feed} />
+          <Tools content={feed} handleLikeClick={handleLikeClick} />
         </div>
       </li>
       {/* <div className="phoneView" onClick={handleClick}>
