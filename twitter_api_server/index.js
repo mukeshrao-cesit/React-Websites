@@ -13,9 +13,9 @@ const MongoModelTweet = require("./tweetsSchema");
 const MongoModelUser = require("./userSchema");
 
 app.use(cors());
-app.use(express.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// app.use(express.json());
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 //tweet
 app.get("/posts", async (req, res) => {

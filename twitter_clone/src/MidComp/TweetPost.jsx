@@ -7,6 +7,7 @@ import axios from "axios";
 const TweetPost = () => {
   const userDetails = useSelector((state) => state.userDetails);
   const [tweetPostInput, setTweetPostInput] = useState("");
+  const [files, setFiles] = useState();
   const dispatch = useDispatch();
 
   async function tweetPostSubmit(e) {
@@ -17,7 +18,7 @@ const TweetPost = () => {
       profileImg: userDetails.profileImg,
       description: tweetPostInput,
       id: uuidv4(),
-      documents: "",
+      documents: files,
       comments: [],
       likesCount: 0,
       commentsCount: 0,
@@ -31,6 +32,33 @@ const TweetPost = () => {
     } catch (error) {
       console.log(error);
     }
+    setFiles("");
+    document.getElementById("previewImg").setAttribute("src", "");
+    document.getElementById("previewInput").value = null;
+    document.getElementById("previewImg").style.display = "none";
+    document.getElementById("cancelPreviewImage").style.display = "none";
+  }
+  function handleEventImg() {
+    var file = document.getElementById("previewInput").files;
+    if (file.length > 0) {
+      var fileReader = new FileReader();
+      fileReader.onload = (event) => {
+        document
+          .getElementById("previewImg")
+          .setAttribute("src", event.target.result);
+        document.getElementById("previewImg").style.display = "inline";
+        document.getElementById("cancelPreviewImage").style.display = "inline";
+        setFiles(event.target.result);
+      };
+      fileReader.readAsDataURL(file[0]);
+    }
+  }
+  function cancelPreviewImage() {
+    document.getElementById("previewImg").setAttribute("src", "");
+    document.getElementById("previewInput").value = null;
+    document.getElementById("previewImg").style.display = "none";
+    document.getElementById("cancelPreviewImage").style.display = "none";
+    setFiles("");
   }
 
   function textGrow(event) {
@@ -54,7 +82,7 @@ const TweetPost = () => {
               className="input-bar"
               placeholder="What's happening ?"
             />
-            {/* <div className="previewImageContainer">
+            <div className="previewImageContainer">
               <img id="previewImg" alt="pic"></img>
               <svg
                 id="cancelPreviewImage"
@@ -67,14 +95,14 @@ const TweetPost = () => {
                   <path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path>
                 </g>
               </svg>
-            </div> */}
+            </div>
             <div className="myTweetSubmitBtn">
               <div className="myTweetsvg">
                 <div className="importImg">
                   <input
                     type="file"
                     id="previewInput"
-                    // onChange={handleEventImg}
+                    onChange={handleEventImg}
                   />
                   <svg
                     viewBox="0 0 24 24"
