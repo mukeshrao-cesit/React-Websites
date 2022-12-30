@@ -1,8 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import "./SideBar.css";
 export const SideBar = () => {
-  const userDetails = useSelector((state) => state.userDetails);
   return (
     <div>
       <div className="MenuBar">
