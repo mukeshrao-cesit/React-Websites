@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./SideBar.css";
 export const SideBar = () => {
+  const userDetails = useSelector((state) => state.userDetails);
   return (
     <div>
       <div className="MenuBar">
@@ -100,27 +102,7 @@ export const SideBar = () => {
               </g>
             </svg>
           </li>
-          <li>{/* <Profile profileImg={profileImg.profileImg} /> */}</li>
         </ul>
-        {/* <div className="menuBar">
-          <div className="feather" id="featherPhone" onClick={myTweetFunc}>
-            <Featherlogo />
-          </div>
-          <div className="panel">
-            <li className="homeLogo">
-              <Homelogo />
-            </li>
-            <li className="searchLogo">
-              <Searchlogo />
-            </li>
-            <li className="bellLogo">
-              <Belllogo />
-            </li>
-            <li className="mailLogo">
-              <Maillogo />
-            </li>
-          </div>
-        </div> */}
       </div>
     </div>
   );

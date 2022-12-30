@@ -4,8 +4,10 @@ import "./Tools.css";
 
 export default function Tools({
   content,
+  setContent,
   setCommentPopUp,
   commentPopUp,
+  handleComment,
   handleLikeClick,
 }) {
   const [isAlreadyLiked, setisAlreadyLiked] = useState(content.isAlreadyLiked);
@@ -28,8 +30,11 @@ export default function Tools({
   }, [isAlreadyLiked]);
   function likesInc() {
     if (isAlreadyLiked === false) {
-      content.likesCount += 1;
-      content.isAlreadyLiked = true;
+      setContent({
+        ...content,
+        isAlreadyLiked: !content.isAlreadyLiked,
+        likesCount: content.likesCount + 1,
+      });
       setisAlreadyLiked(true);
       setLikeColor("red");
       setLikePath(
@@ -37,8 +42,11 @@ export default function Tools({
       );
       handleLikeClick();
     } else {
-      content.likesCount -= 1;
-      content.isAlreadyLiked = false;
+      setContent({
+        ...content,
+        isAlreadyLiked: !content.isAlreadyLiked,
+        likesCount: content.likesCount - 1,
+      });
       setLikeColor("grey");
       setisAlreadyLiked(false);
       setLikePath(
@@ -47,6 +55,7 @@ export default function Tools({
       handleLikeClick();
     }
   }
+
   return (
     <div>
       <div className="openFeedTools">
@@ -55,6 +64,7 @@ export default function Tools({
           onClick={(e) => setCommentPopUp(!commentPopUp)}
         >
           <svg
+            onClick={handleComment}
             viewBox="0 0 24 24"
             aria-hidden="true"
             className="r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi"

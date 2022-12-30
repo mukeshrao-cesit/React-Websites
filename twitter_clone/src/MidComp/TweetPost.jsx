@@ -65,11 +65,11 @@ const TweetPost = () => {
     event.target.style.height = "3px";
     event.target.style.height = event.target.scrollHeight + "px";
   }
+
   return (
     <div className="myTweetContainer">
       <div className="profileImg">
         <div className="profileImgClick">
-          {/* {onClick={profileImgClick}} */}
           <img src={userDetails.profileImg} className="profileImage" alt="" />
         </div>
         <div className="tweetInput">
@@ -83,7 +83,7 @@ const TweetPost = () => {
               placeholder="What's happening ?"
             />
             <div className="previewImageContainer">
-              <img id="previewImg" alt="pic"></img>
+              <img src={files} id="previewImg" alt="pic"></img>
               <svg
                 id="cancelPreviewImage"
                 onClick={cancelPreviewImage}

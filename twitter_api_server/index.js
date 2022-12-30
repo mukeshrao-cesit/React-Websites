@@ -89,6 +89,25 @@ app.patch("/comment", async (req, res) => {
     console.log(error);
   }
 });
+
+app.post("/update", async (req, res) => {
+  const { _id, isAlreadyLiked, likesCount } = req.body;
+  const tweet = await MongoModelTweet.findOne({ _id });
+  const updatedTweet = {
+    ...tweet._doc,
+    isAlreadyLiked: !isAlreadyLiked,
+    likesCount: isAlreadyLiked ? likesCount - 1 : likesCount + 1,
+  };
+  const comment = await MongoModelTweet.findByIdAndUpdate(_id, updatedTweet, {
+    new: true,
+  });
+  try {
+    res.send(comment);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 const db = mongoose.connection;
 db.once("open", function () {
   console.log("Connected Successfully");

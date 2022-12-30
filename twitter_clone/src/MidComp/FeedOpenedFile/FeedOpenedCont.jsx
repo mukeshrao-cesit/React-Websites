@@ -3,8 +3,29 @@ import "./FeedOpenedCont.css";
 import CommentDisplay from "./CommentSection/CommentDisplay";
 import CommentSection from "./CommentSection/CommentSection";
 import Tools from "../../Tools";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 export const FeedOpenedCont = ({ postDetails, setPostDetails, reRender }) => {
+  const dispatch = useDispatch();
+  function handleLikeClick() {
+    apiCallLike();
+  }
+
+  async function apiCallLike() {
+    const res = await axios
+      .post("http://localhost:5000/update", postDetails)
+      .then((res) => {
+        return res.data;
+      });
+    dispatch({
+      type: "UPDATETWEET",
+      newComment: res,
+      _id: postDetails._id,
+    });
+    reRender();
+  }
+
   return (
     <div className="phoneOpenFeed">
       <div className="OpenFeed">
@@ -40,7 +61,11 @@ export const FeedOpenedCont = ({ postDetails, setPostDetails, reRender }) => {
           </div>
         </div>
         <div>
-          <Tools content={postDetails} />
+          <Tools
+            content={postDetails}
+            setContent={setPostDetails}
+            handleLikeClick={handleLikeClick}
+          />
         </div>
         <div>
           <CommentSection

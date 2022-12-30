@@ -6,7 +6,6 @@ import axios from "axios";
 export const FeedOpenedComp = () => {
   const location = useLocation();
   const [postDetails, setPostDetails] = useState(location.state.postDetails);
-
   useEffect(() => {
     apiCall();
   }, []);
