@@ -22,6 +22,7 @@ export const FeedOpenedComp = () => {
   function reRender() {
     apiCall();
   }
+  console.log(postDetails);
   return (
     <div>
       <FeedOpenedNav />
