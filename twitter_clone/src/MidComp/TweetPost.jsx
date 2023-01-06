@@ -7,7 +7,7 @@ import axios from "axios";
 const TweetPost = () => {
   const userDetails = useSelector((state) => state.userDetails);
   const [tweetPostInput, setTweetPostInput] = useState("");
-  const [files, setFiles] = useState();
+  const [files, setFiles] = useState("");
   const dispatch = useDispatch();
 
   async function tweetPostSubmit(e) {

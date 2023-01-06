@@ -1,10 +1,9 @@
-const cors = require("cors");
-
 const express = require("express");
-
+const cors = require("cors");
 const app = express();
 
 const bodyParser = require("body-parser");
+
 // const db = require("./mySql");
 //noSql connection
 const mongoose = require("mongoose");
@@ -13,9 +12,14 @@ const MongoModelTweet = require("./tweetsSchema");
 const MongoModelUser = require("./userSchema");
 
 app.use(cors());
+
 // app.use(express.json());
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+
+app.listen(5000, () => {
+  console.log("Server started in port 5000");
+});
 
 //tweet
 app.get("/posts", async (req, res) => {
@@ -117,6 +121,3 @@ mongoose
     "mongodb+srv://MukeshRao:Mukeshrao@cluster0.y7xwjjp.mongodb.net/?retryWrites=true&w=majority"
   )
   .then((res) => {});
-app.listen(5000, () => {
-  console.log("Server started in port 5000");
-});

@@ -78,9 +78,7 @@ export const Feed = ({ feed }) => {
             <p>{content.profileId}</p>
           </div>
           <p>{content.description}</p>
-          {content.documents.length > 0 && (
-            <img src={content.documents} alt="doc" />
-          )}
+          {content.documents && <img src={content.documents} alt="doc" />}
           <Tools
             content={content}
             commentPopUp={commentPopUp}

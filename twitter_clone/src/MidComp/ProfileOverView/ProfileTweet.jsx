@@ -28,9 +28,7 @@ function ProfileTweet({ tweet }) {
               <p>{tweet.profileId}</p>
             </div>
             <p>{tweet.description}</p>
-            {tweet.documents.length > 0 && (
-              <img src={tweet.documents} alt="doc" />
-            )}
+            {tweet.documents && <img src={tweet.documents} alt="doc" />}
             <Tools content={tweet} />
           </div>
         </div>
