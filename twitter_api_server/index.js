@@ -1,24 +1,39 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const http = require("http");
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+
+app.use(cors());
 
 const bodyParser = require("body-parser");
 
-// const db = require("./mySql");
-//noSql connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
 const MongoModelTweet = require("./tweetsSchema");
 const MongoModelUser = require("./userSchema");
 
-app.use(cors());
-
-// app.use(express.json());
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
-app.listen(5000, () => {
-  console.log("Server started in port 5000");
+//socket connection
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5001",
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log(`User Connected : ${socket.id}`);
+
+  socket.on("sendPost", (data) => {
+    socket.broadcast.emit("newPost", data);
+  });
+
+  socket.on("sendComment", (data) => {
+    socket.broadcast.emit("newComment", data);
+  });
 });
 
 //tweet
@@ -121,3 +136,6 @@ mongoose
     "mongodb+srv://MukeshRao:Mukeshrao@cluster0.y7xwjjp.mongodb.net/?retryWrites=true&w=majority"
   )
   .then((res) => {});
+server.listen(5000, () => {
+  console.log("connected success");
+});

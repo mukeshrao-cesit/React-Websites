@@ -3,11 +3,17 @@ import { FeedOpenedCont } from "./FeedOpenedCont";
 import FeedOpenedNav from "./FeedOpenedNav";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import io from "socket.io-client";
+const socket = io("http://localhost:5000", { transports: ["websocket"] });
+
 export const FeedOpenedComp = () => {
   const location = useLocation();
   const [postDetails, setPostDetails] = useState(location.state.postDetails);
   useEffect(() => {
     apiCall();
+    socket.on("newComment", (data) => {
+      setPostDetails(...data);
+    });
   }, []);
 
   const apiCall = async () => {
@@ -17,12 +23,13 @@ export const FeedOpenedComp = () => {
         return res.data;
       });
     const data = allTweets.filter((elem) => elem.id === postDetails.id);
+    socket.emit("sendComment", data);
     setPostDetails(...data);
   };
   function reRender() {
     apiCall();
   }
-  console.log(postDetails);
+
   return (
     <div>
       <FeedOpenedNav />

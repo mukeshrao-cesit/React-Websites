@@ -9,6 +9,7 @@ export default function CommentDisplay({
   reRender,
 }) {
   const dispatch = useDispatch();
+
   async function handleSubb(comment) {
     setPostContent((prev) => {
       return {
@@ -31,6 +32,7 @@ export default function CommentDisplay({
         commentID: comment.id,
         newSubComments: comment,
       });
+
       dispatch({
         type: "UPDATETWEET",
         newComment: res.data,

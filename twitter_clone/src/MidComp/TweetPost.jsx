@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./TweetPost.css";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import io from "socket.io-client";
+const socket = io("http://localhost:5000", { transports: ["websocket"] });
 
 const TweetPost = () => {
   const userDetails = useSelector((state) => state.userDetails);
   const [tweetPostInput, setTweetPostInput] = useState("");
   const [files, setFiles] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    socket.on("newPost", (data) => {
+      window.alert("New Post Added");
+      dispatch({ type: "UPDATE", newTweets: data });
+    });
+  }, []);
 
   async function tweetPostSubmit(e) {
     e.preventDefault();
@@ -28,7 +37,7 @@ const TweetPost = () => {
     setTweetPostInput("");
     try {
       const res = await axios.post("http://localhost:5000/posts", payload);
-      dispatch({ type: "UPDATE", newTweets: res.data });
+      socket.emit("sendPost", res.data);
     } catch (error) {
       console.log(error);
     }
